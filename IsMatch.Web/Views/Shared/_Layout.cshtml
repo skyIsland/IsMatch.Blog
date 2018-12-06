@@ -47,16 +47,22 @@
     @RenderBody()
     <div class="footer-wrap">
         <div class="footer w1000">
+            @*<p>
+                <span>Copyright</span><span>&copy;</span><span>2017</span><a href="http://www.ismatch.cn">倚楼听风雨</a><span>Design By 傻大蒙</span>
+            </p>
+            <p>
+                <a href="#" target="_blank">桂ICP备17004359号</a>
+            </p>*@
             <div class="qrcode">
-                <img src="~/images/erweima.jpg">
+                <img src="~/images/qrcode.jpg">
             </div>
             <div class="practice-mode">
-                <img src="~/images/down_img.jpg">
+                @*<img src="~/images/down_img.jpg">*@
                 <div class="text">
                     <h4 class="title">我的联系方式</h4>
-                    <p>微信<span class="WeChat">1234567890</span></p>
-                    <p>手机<span class="iphone">1234567890</span></p>
-                    <p>邮箱<span class="email">1234567890@qq.com</span></p>
+                    <p>知乎<span class="zhihu">无</span></p>
+                    <p>新浪微博<span class="weibo">无</span></p>
+                    <p>邮箱<span class="email">ismatch@qq.com</span></p>
                 </div>
             </div>
         </div>
@@ -66,7 +72,7 @@
         layui.config({
             base: '../../js/util/'
         }).use(['menu'], function () {
-            menu = layui.menu;
+            var menu = layui.menu;
             menu.init();
         })
     </script>

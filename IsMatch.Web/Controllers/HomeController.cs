@@ -20,6 +20,15 @@ namespace IsMatch.Web.Controllers
         }
 
         /// <summary>
+        /// 详情页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Detail()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// 微语页
         /// </summary>
         /// <returns></returns>
