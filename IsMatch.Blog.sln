@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsMatch.Models", "IsMatch.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsMatch.WebApi", "IsMatch.WebApi\IsMatch.WebApi.csproj", "{58637577-61AD-4347-B21A-6BFD59B1F7AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsMatch.Web", "IsMatch.Web\IsMatch.Web.csproj", "{3A8953BF-99EE-4B2E-88D3-7744DA85EBDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{58637577-61AD-4347-B21A-6BFD59B1F7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58637577-61AD-4347-B21A-6BFD59B1F7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58637577-61AD-4347-B21A-6BFD59B1F7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A8953BF-99EE-4B2E-88D3-7744DA85EBDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A8953BF-99EE-4B2E-88D3-7744DA85EBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A8953BF-99EE-4B2E-88D3-7744DA85EBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A8953BF-99EE-4B2E-88D3-7744DA85EBDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
