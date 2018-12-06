@@ -10,30 +10,59 @@ namespace IsMatch.Web.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// 首页(文章列表页)
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// 微语页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Whisper()
+        {
+            ViewData["Message"] = "微语页.";
+
+            return View();
+        }
+
+        /// <summary>
+        /// 留言页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Leacots()
+        {
+            ViewData["Message"] = "留言页.";
+
+            return View();
+        }
+
+        /// <summary>
+        /// 相册页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Album()
+        {
+            ViewData["Message"] = "相册页.";
+
+            return View();
+        }
+
+        /// <summary>
+        /// 关于页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "关于页.";
 
             return View();
         }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
