@@ -14,8 +14,10 @@ namespace IsMatch.Web.Controllers
         /// 首页(文章列表页)
         /// </summary>
         /// <returns></returns>
+        [Route("Index.do")]
         public IActionResult Index()
         {
+            ViewBag.Title = "首页";
             return View();
         }
 
@@ -34,8 +36,7 @@ namespace IsMatch.Web.Controllers
         /// <returns></returns>
         public IActionResult Whisper()
         {
-            ViewData["Message"] = "微语页.";
-
+            ViewBag.Title = "我的微语";
             return View();
         }
 
@@ -45,8 +46,7 @@ namespace IsMatch.Web.Controllers
         /// <returns></returns>
         public IActionResult Leacots()
         {
-            ViewData["Message"] = "留言页.";
-
+            ViewBag.Title = "留言";
             return View();
         }
 
@@ -56,8 +56,7 @@ namespace IsMatch.Web.Controllers
         /// <returns></returns>
         public IActionResult Album()
         {
-            ViewData["Message"] = "相册页.";
-
+            ViewBag.Title = "我的相册";
             return View();
         }
 
@@ -65,10 +64,10 @@ namespace IsMatch.Web.Controllers
         /// 关于页
         /// </summary>
         /// <returns></returns>
+        [Route("About.do")]
         public IActionResult About()
         {
-            ViewData["Message"] = "关于页.";
-
+            ViewBag.Title = "关于我";
             return View();
         }
         
