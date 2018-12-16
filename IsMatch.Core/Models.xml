@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables Version="9.9.6881.41313" NameSpace="IsMatch.Core" ConnName="mssqlconn" Output="Article" BaseClass="Entity">
+  <Table Name="ArticleCategory" Description="文章栏目" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="KindName" DataType="String" Length="250" Description="栏目名称" />
+      <Column Name="KindEnName" DataType="String" Length="250" Description="栏目英文名" />
+      <Column Name="Keyword" DataType="String" Length="250" Description="描述" />
+      <Column Name="Description" DataType="String" Length="250" Description="介绍" />
+      <Column Name="LinkURL" DataType="String" Length="250" Description="跳转链接" />
+      <Column Name="TitleColor" DataType="String" Description="类别名称颜色" />
+      <Column Name="IsList" DataType="Int32" Description="是否为列表页面" />
+      <Column Name="PageSize" DataType="Int32" Description="每页显示数量" />
+      <Column Name="PId" DataType="Int32" Description="上级ID" />
+      <Column Name="IsHide" DataType="Int32" Description="是否隐藏" />
+      <Column Name="IsDel" DataType="Int32" Description="是否删除,已经删除到回收站" />
+      <Column Name="Sequence" DataType="Int32" Description="排序" />
+    </Columns>
+  </Table>
+  <Table Name="Article" Description="文章" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="KId" DataType="Int32" Description="栏目ID" />
+      <Column Name="Title" DataType="String" Master="True" Length="250" Description="标题" />
+      <Column Name="SubTitle" DataType="String" Length="250" Description="副标题" />
+      <Column Name="Content" DataType="String" Length="-1" Description="内容" />
+      <Column Name="Keyword" DataType="String" Length="250" Description="描述" />
+      <Column Name="LinkURL" DataType="String" Length="250" Description="跳转链接" />
+      <Column Name="IsHide" DataType="Int32" Description="是否隐藏" />
+      <Column Name="IsDel" DataType="Int32" Description="是否删除,已经删除到回收站" />
+      <Column Name="IsTop" DataType="Int32" Description="是否置顶" />
+      <Column Name="IsComment" DataType="Int32" Description="是否允许评论" />
+      <Column Name="Hits" DataType="Int32" Description="点击数量" />
+      <Column Name="Sequence" DataType="Int32" Description="排序" />
+      <Column Name="Icon" DataType="String" Length="100" Description="图标" />
+      <Column Name="Pic" DataType="String" Length="250" Description="图片" />
+      <Column Name="Tags" DataType="String" Length="250" Description="TAG" />
+      <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
+      <Column Name="UpdateTime" DataType="DateTime" Description="时间" />
+    </Columns>
+  </Table>
+</Tables>

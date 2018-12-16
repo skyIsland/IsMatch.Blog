@@ -8,6 +8,12 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="NewLife.XCode" Version="9.9.6911.41890" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IsMatch.Common\IsMatch.Common.csproj" />
+    <ProjectReference Include="..\IsMatch.Core\IsMatch.Core.csproj" />
   </ItemGroup>
 
 </Project>
