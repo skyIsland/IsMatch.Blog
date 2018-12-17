@@ -9,28 +9,25 @@ using IsMatch.Web.Models;
 
 namespace IsMatch.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public HomeController()
-        {            
-            ViewBag.Position = "Index";
-        }
+
+        #region 首页(文章列表页)
         /// <summary>
         /// 首页(文章列表页)
         /// </summary>
         /// <returns></returns>
-        [Route("Index.html")]
-        [Route("Index")]
+        [Route("index")]
         [Route("/")]
         public IActionResult Index()
         {
             ViewBag.Title = "首页";
-            ViewBag.AllArticleCategory = ArticleCategory.FindAll(ArticleCategory._.IsDel == false & ArticleCategory._.PId == 0, ArticleCategory._.Sequence, null, 0, 0);
+            ViewBag.Position = "Index";
             return View();
         }
 
         /// <summary>
-        /// 列表页
+        /// 文章列表页
         /// </summary>
         /// <returns></returns>
         public IActionResult List()
@@ -46,55 +43,8 @@ namespace IsMatch.Web.Controllers
         {
             return View();
         }
+        #endregion        
 
-        /// <summary>
-        /// 微语页
-        /// </summary>
-        /// <returns></returns>
-        [Route("Whisper.html")]
-        [Route("Whisper")]
-        public IActionResult Whisper()
-        {
-            ViewBag.Title = "我的微语";
-            return View();
-        }
-
-        /// <summary>
-        /// 留言页
-        /// </summary>
-        /// <returns></returns>
-        [Route("Leacots.html")]
-        [Route("Leacots")]
-        public IActionResult Leacots()
-        {
-            ViewBag.Title = "留言";
-            return View();
-        }
-
-        /// <summary>
-        /// 相册页
-        /// </summary>
-        /// <returns></returns>
-        [Route("Album.html")]
-        [Route("Album")]
-        public IActionResult Album()
-        {
-            ViewBag.Title = "我的相册";
-            return View();
-        }
-
-        /// <summary>
-        /// 关于页
-        /// </summary>
-        /// <returns></returns>
-        [Route("About.html")]
-        [Route("About")]
-        public IActionResult About()
-        {
-            ViewBag.Title = "关于我";
-            return View();
-        }
-        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
