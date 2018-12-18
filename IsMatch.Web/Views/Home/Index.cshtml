@@ -1,5 +1,5 @@
 ﻿@{
-
+    List<ArticleCategory> secondCatogory = ViewBag.SecondCatogory;
 }
 <div class="banner">
     <div class="cont w1000">
@@ -17,9 +17,13 @@
     <div class="cont w1000">
         <div class="title">
             <span class="layui-breadcrumb" lay-separator="|">
-                <a href="javascript:;" class="active">设计文章</a>
-                <a href="javascript:;">前端文章</a>
-                <a href="javascript:;">旅游杂记</a>
+                @{
+                    var sencondCatoryCount = secondCatogory.Count;
+                    for (int i = 0; i < sencondCatoryCount; i++)
+                    {
+                        <a href="javascript:;" class ="@(i == 0 ? "active":"")">@secondCatogory[i].KindName</a>
+                    }
+                }
             </span>
         </div>
         <div class="list-item">
@@ -115,8 +119,8 @@
 
 @section Scripts{
     <script type="text/javascript">
-        layui.use(['laypage', 'jquery'], function () {
-            laypage = layui.laypage;
+        layui.use(['laypage', 'jquery','element'], function () {
+            var laypage = layui.laypage;
             laypage.render({
                 elem: 'demo'
                 , count: 70 //数据总数，从服务端得到

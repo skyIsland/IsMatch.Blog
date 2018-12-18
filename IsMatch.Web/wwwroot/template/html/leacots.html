@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -184,14 +184,14 @@
    layui.config({
       base: '../res/js/util/'
     }).use(['element','laypage','form','menu'],function(){
-      element = layui.element,laypage = layui.laypage,form = layui.form,menu = layui.menu;
+      var element = layui.element,laypage = layui.laypage,form = layui.form,menu = layui.menu;
       laypage.render({
         elem: 'demo'
         ,count: 70 //数据总数，从服务端得到
       });
       menu.init();
-      menu.submit()
-    })
+       menu.submit();
+   })
   </script>
 </body>
 </html>
