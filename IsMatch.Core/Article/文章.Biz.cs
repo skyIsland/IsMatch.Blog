@@ -1,6 +1,9 @@
 using IsMatch.Common.Web;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Web.Script.Serialization;
+using NewLife.Log;
 using XCode;
 using XCode.Membership;
 
@@ -31,38 +34,80 @@ namespace IsMatch.Core
             //if (!Dirtys[nameof(UpdateTime)]) nameof(UpdateTime) = DateTime.Now;
         }
 
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    if (Meta.Session.Count > 0) return;
+        /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void InitData()
+        {
+            // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
+            if (Meta.Session.Count > 0) return;
 
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化Article[文章]数据……");
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化Article[文章]数据……");
 
-        //    var entity = new Article();
-        //    entity.Id = 0;
-        //    entity.KId = 0;
-        //    entity.Title = "abc";
-        //    entity.SubTitle = "abc";
-        //    entity.Content = "abc";
-        //    entity.Keyword = "abc";
-        //    entity.LinkURL = "abc";
-        //    entity.IsHide = 0;
-        //    entity.IsDel = 0;
-        //    entity.IsTop = 0;
-        //    entity.IsComment = 0;
-        //    entity.Hits = 0;
-        //    entity.Sequence = 0;
-        //    entity.Icon = "abc";
-        //    entity.Pic = "abc";
-        //    entity.Tags = "abc";
-        //    entity.AddTime = DateTime.Now;
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Insert();
+            var a1 = new Article()
+            {
+                Title = "前端系列文章1",
+                Keyword = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi exercitationem error, quam inventore nobis corporis nam, tenetur quidem voluptatibus similique odit quas molestias? Magni alias enim sint eveniet harum quasi!",
+                KId = 6,
+                SubTitle = "abc",
+                Content = "abc",
+                LinkURL = "abc",
+                IsHide = 0,
+                IsDel = 0,
+                IsTop = 0,
+                IsComment = 0,
+                Hits = 0,
+                Sequence = 0,
+                Icon = "abc",
+                Pic = "",
+                Tags = "abc",
+                AddTime = DateTime.Now,
+                UpdateTime = DateTime.Now
+            };
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化Article[文章]数据！");
-        //}
+            var a2 = new Article()
+            {
+                Title = "后端系列文章1",
+                Keyword = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi exercitationem error, quam inventore nobis corporis nam, tenetur quidem voluptatibus similique odit quas molestias? Magni alias enim sint eveniet harum quasi!",
+                KId = 7,
+                Content = "abc",
+                LinkURL = "abc",
+                IsHide = 0,
+                IsDel = 0,
+                IsTop = 0,
+                IsComment = 0,
+                Hits = 0,
+                Sequence = 0,
+                Icon = "abc",
+                Pic = "",
+                Tags = "abc",
+                AddTime = DateTime.Now,
+                UpdateTime = DateTime.Now
+            };
+            var a3 = new Article()
+            {
+                Title = "旅游杂记系列文章1",
+                Keyword = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi exercitationem error, quam inventore nobis corporis nam, tenetur quidem voluptatibus similique odit quas molestias? Magni alias enim sint eveniet harum quasi!",
+                KId = 8,
+                Content = "abc",
+                LinkURL = "abc",
+                IsHide = 0,
+                IsDel = 0,
+                IsTop = 0,
+                IsComment = 0,
+                Hits = 0,
+                Sequence = 0,
+                Icon = "abc",
+                Pic = "",
+                Tags = "abc",
+                AddTime = DateTime.Now,
+                UpdateTime = DateTime.Now
+            };
+            a1.Insert();
+            a2.Insert();
+            a3.Insert();
+
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化Article[文章]数据！");
+        }
 
         ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
         ///// <returns></returns>
@@ -80,6 +125,14 @@ namespace IsMatch.Core
         #endregion
 
         #region 扩展属性
+        [ScriptIgnore]
+        private ArticleCategory _MyArticleCategory;
+       
+        public ArticleCategory MyArticleCategory => _MyArticleCategory ?? (_MyArticleCategory = ArticleCategory.FindById(this.KId));
+
+        public string PName => MyArticleCategory.KindName;
+        public bool IsNew => DateTime.Now.ToString("yyyyMMdd").ToInt() - UpdateTime.ToString("yyyyMMdd").ToInt() < 4;
+
         #endregion
 
         #region 扩展查询
@@ -99,7 +152,7 @@ namespace IsMatch.Core
             return Find(_.Id == id);
         }
 
-        public static IList<Article> FindByPId(Int32 pId,IsMatchPager p)
+        public static IList<Article> FindByPId(Int32 pId, IsMatchPager p)
         {
             //if (pId <= 0) return null;
 
@@ -109,7 +162,9 @@ namespace IsMatch.Core
             //// 单对象缓存
             ////return Meta.SingleCache[id];
             if (p == null) p = new IsMatchPager();
-            return FindAll(_.KId == pId, p);
+            p.Order = "Desc";
+            p.OrderBy = "Sequence";
+            return FindAll(_.KId == pId & _.IsDel == 0, p);
         }
         #endregion
 

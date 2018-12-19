@@ -39,6 +39,14 @@ namespace IsMatch.Core
         [BindColumn("Title", "标题", "nvarchar(250)", Master = true)]
         public String Title { get { return _Title; } set { if (OnPropertyChanging(__.Title, value)) { _Title = value; OnPropertyChanged(__.Title); } } }
 
+        private String _EnTitle;
+        /// <summary>英文标题</summary>
+        [DisplayName("英文标题")]
+        [Description("英文标题")]
+        [DataObjectField(false, false, true, 250)]
+        [BindColumn("EnTitle", "英文标题", "nvarchar(250)", Master = true)]
+        public String EnTitle { get { return _EnTitle; } set { if (OnPropertyChanging(__.EnTitle, value)) { _EnTitle = value; OnPropertyChanged(__.EnTitle); } } }
+
         private String _SubTitle;
         /// <summary>副标题</summary>
         [DisplayName("副标题")]
@@ -173,6 +181,7 @@ namespace IsMatch.Core
                     case __.Id : return _Id;
                     case __.KId : return _KId;
                     case __.Title : return _Title;
+                    case __.EnTitle : return _EnTitle;
                     case __.SubTitle : return _SubTitle;
                     case __.Content : return _Content;
                     case __.Keyword : return _Keyword;
@@ -198,6 +207,7 @@ namespace IsMatch.Core
                     case __.Id : _Id = Convert.ToInt32(value); break;
                     case __.KId : _KId = Convert.ToInt32(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
+                    case __.EnTitle : _EnTitle = Convert.ToString(value); break;
                     case __.SubTitle : _SubTitle = Convert.ToString(value); break;
                     case __.Content : _Content = Convert.ToString(value); break;
                     case __.Keyword : _Keyword = Convert.ToString(value); break;
@@ -231,6 +241,9 @@ namespace IsMatch.Core
 
             /// <summary>标题</summary>
             public static readonly Field Title = FindByName(__.Title);
+
+            /// <summary>英文标题</summary>
+            public static readonly Field EnTitle = FindByName(__.EnTitle);
 
             /// <summary>副标题</summary>
             public static readonly Field SubTitle = FindByName(__.SubTitle);
@@ -292,6 +305,9 @@ namespace IsMatch.Core
             /// <summary>标题</summary>
             public const String Title = "Title";
 
+            /// <summary>英文标题</summary>
+            public const String EnTitle = "EnTitle";
+
             /// <summary>副标题</summary>
             public const String SubTitle = "SubTitle";
 
@@ -352,6 +368,9 @@ namespace IsMatch.Core
 
         /// <summary>标题</summary>
         String Title { get; set; }
+
+        /// <summary>英文标题</summary>
+        String EnTitle { get; set; }
 
         /// <summary>副标题</summary>
         String SubTitle { get; set; }

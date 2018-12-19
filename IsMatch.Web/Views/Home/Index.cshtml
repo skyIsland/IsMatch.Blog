@@ -21,7 +21,7 @@
                     var sencondCatoryCount = secondCatogory.Count;
                     for (int i = 0; i < sencondCatoryCount; i++)
                     {
-                        <a href="javascript:;" class ="@(i == 0 ? "active":"")">@secondCatogory[i].KindName</a>
+                        <a href="javascript:;" data-id="@secondCatogory[i].Id" class ="@(i == 0 ? "active":"")">@secondCatogory[i].KindName</a>
                     }
                 }
             </span>
@@ -113,19 +113,20 @@
                 </div>
             </div>*@
         </div>
-        <div id="demo" style="text-align: center;"></div>
+        <div id="pager" style="text-align: center;"></div>
     </div>
 </div>
 
 <script type="text/html" id="laytplCont">
+    {{#  layui.each(d, function(index, item){ }}
     <div class="item">
         <div class="layui-fluid">
             <div class="layui-row">
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
                     <div class="img">
-                        {{#  if(d.Pic){ }}
-                        <img src="{{d.Pic}}" alt="">
-                        {{#  } else { }}
+                        {{# if(item.pic){ }}
+                        <img src="{{item.pic}}" alt="">
+                        {{# } else { }}
                         <img src="~/images/sy_img4.jpg" alt="">
                         {{# } }}
                     </div>
@@ -133,39 +134,37 @@
                 <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                     <div class="item-cont">
                         <h3>
-                            {{ d.Title }}
-                            {{# if(d.IsNew){ }}
+                            {{ item.title }}
+                            {{# if(item.isNew){ }}
                             <button class="layui-btn layui-btn-danger new-icon">new</button>
                             {{# }else {}}
                             {{# } }}
                         </h3>
-                        <h5>{{ d.PName }}</h5>
+                        <h5>{{ item.pName }}</h5>
                         <p>
-                            {{ d.Keyword }}
+                            {{ item.keyword }}
                         </p>
-                        {{#  if(d.EName){ }}
-                         <a href="/detail/{{ d.EName }}" class="go-icon"></a>
-                        {{#  } else { }}
-                         <a href="/detail/{{ d.Title }}" class="go-icon"></a>
+                        {{# if(item.enTitle){ }}
+                        <a href="/detail/{{ item.enTitle }}" class="go-icon"></a>
+                        {{# } else { }}
+                        <a href="/detail/{{ item.title }}" class="go-icon"></a>
                         {{# } }}
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {{#  }); }}
 </script>
 
 @section Scripts{
     <script type="text/javascript">
         layui.config({
             base: '../../js/index/'
-        }).use(['laypage', 'jquery','element','list'], function () {
-            var laypage = layui.laypage, list = layui.list;
-            laypage.render({
-                elem: 'demo'
-                , count: 70 //数据总数，从服务端得到
-            });
+        }).use(['element','list'], function () {
+            var list = layui.list;
+            list.init();
         });
     </script>
 }

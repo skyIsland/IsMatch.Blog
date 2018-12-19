@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using NewLife.Log;
 using XCode;
 
@@ -66,7 +67,54 @@ namespace IsMatch.Core
                 i++;
                 entity.Insert();
             }
-           
+
+            var a1 = new ArticleCategory()
+            {
+                KindName = "前端文章",
+                KindEnName = "frontend",
+                PId = 1,
+                Description = "前端文章",
+                LinkURL = "abc",
+                TitleColor = "abc",
+                IsList = 0,
+                PageSize = 5,
+                IsHide = 0,
+                IsDel = 0,
+                Sequence = 0
+            };
+            a1.Insert();
+
+            var a2 = new ArticleCategory()
+            {
+                KindName = "后端文章",
+                KindEnName = "backend",
+                PId = 1,
+                Description = "后端文章",
+                LinkURL = "abc",
+                TitleColor = "abc",
+                IsList = 0,
+                PageSize = 5,
+                IsHide = 0,
+                IsDel = 0,
+                Sequence = 1
+            };
+            a2.Insert();
+
+            var a3 = new ArticleCategory()
+            {
+                KindName = "旅游杂记",
+                KindEnName = "travel",
+                PId = 1,
+                Description = "旅游杂记",
+                LinkURL = "abc",
+                TitleColor = "abc",
+                IsList = 0,
+                PageSize = 5,
+                IsHide = 0,
+                IsDel = 0,
+                Sequence = 2
+            };
+            a3.Insert();
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化ArticleCategory[文章栏目]数据！");
         }
@@ -109,17 +157,17 @@ namespace IsMatch.Core
         /// <summary>根据父级编号查找</summary>
         /// <param name="pId">编号</param>
         /// <returns>实体对象</returns>
-        public static IList<ArticleCategory> FindByPId(Int32 pId)
+        public static List<ArticleCategory> FindByPId(Int32 pId)
         {
             if (pId <= 0) return null;
 
             // 实体缓存
-            if (Meta.Session.Count < 1000) return Meta.Cache.FindAll(e => e.PId == pId);
+            if (Meta.Session.Count < 1000) return Meta.Cache.FindAll(e => e.PId == pId).OrderBy( p=> p.Sequence).ToList();
 
             // 单对象缓存
             //return Meta.SingleCache[id];
 
-            return FindAll(_.PId == pId);
+            return FindAll(_.PId == pId).OrderBy(p => p.Sequence).ToList();
         }
         #endregion
 

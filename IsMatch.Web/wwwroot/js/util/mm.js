@@ -19,12 +19,12 @@ layui.define(['jquery', 'element', 'laytpl', 'carousel', 'laypage'], function (e
                 data: param.data || '',
                 success: function (res) {
                     // 请求成功
-                    if (0 === res.Status) {
-                        typeof param.success === 'function' && param.success(res, res.Message);
+                    if (1 === res.status) {
+                        typeof param.success === 'function' && param.success(res, res.message);
                     }
                     // 请求数据错误
-                    else if (1 === res.Status) {
-                        typeof param.error === 'function' && param.error(res.Message);
+                    else if (0 === res.status) {
+                        typeof param.error === 'function' && param.error(res.message);
                     }
                 },
                 error: function (err) {

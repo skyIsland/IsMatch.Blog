@@ -22,6 +22,7 @@
       <Column Name="Id" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="KId" DataType="Int32" Description="栏目ID" />
       <Column Name="Title" DataType="String" Master="True" Length="250" Description="标题" />
+      <Column Name="EnTitle" DataType="String" Master="True" Length="250" Description="英文标题" />
       <Column Name="SubTitle" DataType="String" Length="250" Description="副标题" />
       <Column Name="Content" DataType="String" Length="-1" Description="内容" />
       <Column Name="Keyword" DataType="String" Length="250" Description="描述" />
