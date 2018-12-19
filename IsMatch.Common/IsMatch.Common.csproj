@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NewLife.Core" Version="7.4.6911.41889" />
+  </ItemGroup>
+
 </Project>

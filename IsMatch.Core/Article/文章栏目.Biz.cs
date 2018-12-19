@@ -105,6 +105,22 @@ namespace IsMatch.Core
 
             return Find(_.Id == id);
         }
+
+        /// <summary>根据父级编号查找</summary>
+        /// <param name="pId">编号</param>
+        /// <returns>实体对象</returns>
+        public static IList<ArticleCategory> FindByPId(Int32 pId)
+        {
+            if (pId <= 0) return null;
+
+            // 实体缓存
+            if (Meta.Session.Count < 1000) return Meta.Cache.FindAll(e => e.PId == pId);
+
+            // 单对象缓存
+            //return Meta.SingleCache[id];
+
+            return FindAll(_.PId == pId);
+        }
         #endregion
 
         #region 高级查询

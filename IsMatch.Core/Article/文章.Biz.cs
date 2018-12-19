@@ -1,4 +1,6 @@
+using IsMatch.Common.Web;
 using System;
+using System.Collections.Generic;
 using XCode;
 using XCode.Membership;
 
@@ -95,6 +97,19 @@ namespace IsMatch.Core
             //return Meta.SingleCache[id];
 
             return Find(_.Id == id);
+        }
+
+        public static IList<Article> FindByPId(Int32 pId,IsMatchPager p)
+        {
+            //if (pId <= 0) return null;
+
+            //// 实体缓存
+            //if (Meta.Session.Count < 1000) return Meta.Cache.FindAll(e => e.KId == pId);
+
+            //// 单对象缓存
+            ////return Meta.SingleCache[id];
+            if (p == null) p = new IsMatchPager();
+            return FindAll(_.KId == pId, p);
         }
         #endregion
 

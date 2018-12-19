@@ -27,7 +27,7 @@
             </span>
         </div>
         <div class="list-item">
-            <div class="item">
+            @*<div class="item">
                 <div class="layui-fluid">
                     <div class="layui-row">
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
@@ -111,16 +111,57 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
         </div>
         <div id="demo" style="text-align: center;"></div>
     </div>
 </div>
 
+<script type="text/html" id="laytplCont">
+    <div class="item">
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                    <div class="img">
+                        {{#  if(d.Pic){ }}
+                        <img src="{{d.Pic}}" alt="">
+                        {{#  } else { }}
+                        <img src="~/images/sy_img4.jpg" alt="">
+                        {{# } }}
+                    </div>
+                </div>
+                <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                    <div class="item-cont">
+                        <h3>
+                            {{ d.Title }}
+                            {{# if(d.IsNew){ }}
+                            <button class="layui-btn layui-btn-danger new-icon">new</button>
+                            {{# }else {}}
+                            {{# } }}
+                        </h3>
+                        <h5>{{ d.PName }}</h5>
+                        <p>
+                            {{ d.Keyword }}
+                        </p>
+                        {{#  if(d.EName){ }}
+                         <a href="/detail/{{ d.EName }}" class="go-icon"></a>
+                        {{#  } else { }}
+                         <a href="/detail/{{ d.Title }}" class="go-icon"></a>
+                        {{# } }}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
 @section Scripts{
     <script type="text/javascript">
-        layui.use(['laypage', 'jquery','element'], function () {
-            var laypage = layui.laypage;
+        layui.config({
+            base: '../../js/index/'
+        }).use(['laypage', 'jquery','element','list'], function () {
+            var laypage = layui.laypage, list = layui.list;
             laypage.render({
                 elem: 'demo'
                 , count: 70 //数据总数，从服务端得到
