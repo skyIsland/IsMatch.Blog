@@ -152,7 +152,7 @@ namespace IsMatch.Core
             return Find(_.Id == id);
         }
 
-        public static IList<Article> FindByPId(Int32 pId, IsMatchPager p)
+        public static IList<Article> FindByCategoryId(Int32 categoryId, IsMatchPager p)
         {
             //if (pId <= 0) return null;
 
@@ -164,7 +164,14 @@ namespace IsMatch.Core
             if (p == null) p = new IsMatchPager();
             p.Order = "Desc";
             p.OrderBy = "Sequence";
-            return FindAll(_.KId == pId & _.IsDel == 0, p);
+            var exp = new WhereExpression();
+            exp += _.IsDel == 0;
+            if (categoryId > 0)
+            {
+                exp &= _.KId == categoryId;
+            }
+            p.TotalCount = FindCount(exp);
+            return FindAll(exp, p);
         }
         #endregion
 

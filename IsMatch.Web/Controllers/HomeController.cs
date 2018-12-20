@@ -52,10 +52,10 @@ namespace IsMatch.Web.Controllers
         #region 方法
         [HttpGet]
         [Route("Home/GetList/{pId}")]
-        public virtual IActionResult GetList(int pId = 1, IsMatchPager p = null)
+        public virtual IActionResult GetList(int categoryId = 0, IsMatchPager p = null)
         {
             if (p == null) p = new IsMatchPager();
-            var list = Article.FindByPId(pId, p);
+            var list = Article.FindByCategoryId(categoryId, p);
             var result = PageResult.FromPager(p);
             result.Data = list;
             return Json(result);

@@ -17,11 +17,12 @@
     <div class="cont w1000">
         <div class="title">
             <span class="layui-breadcrumb" lay-separator="|">
+                <a href="javascript:;" data-id="0" class="active">所有文章</a>
                 @{
                     var sencondCatoryCount = secondCatogory.Count;
                     for (int i = 0; i < sencondCatoryCount; i++)
                     {
-                        <a href="javascript:;" data-id="@secondCatogory[i].Id" class ="@(i == 0 ? "active":"")">@secondCatogory[i].KindName</a>
+                        <a href="javascript:;" data-id="@secondCatogory[i].Id">@secondCatogory[i].KindName</a>
                     }
                 }
             </span>

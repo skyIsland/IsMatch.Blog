@@ -13,21 +13,17 @@ namespace IsMatch.Common.Web
     {
         #region 属性
 
-        private Int32 _PageIndex = 1;
         /// <summary>页面索引</summary>
-        public virtual Int32 PageIndex { get { return _PageIndex; } set { _PageIndex = value > 1 ? value : 1; } }
+        public virtual Int32 PageIndex { get; set; }
 
-        private Int32 _PageSize = 20;
         /// <summary>页面大小</summary>
-        public virtual Int32 PageSize { get { return _PageSize; } set { _PageSize = value > 1 ? value : 20; } }
+        public virtual Int32 PageSize { get; set; }
 
-        private Int32 _TotalCount;
         /// <summary>总记录数</summary>
-        public Int32 TotalCount { get { return _TotalCount; } set { _TotalCount = value; } }
+        public Int32 TotalCount { get; set; }
 
-        private Int32 _PageCount;
         /// <summary>页数</summary>
-        public Int32 PageCount { get { return _PageCount; } set { _PageCount = value; } }
+        public Int32 PageCount { get; set; }
 
         #endregion
 
@@ -37,7 +33,7 @@ namespace IsMatch.Common.Web
         /// <returns></returns>
         public static PageResult<T> FromPager(Pager p)
         {
-            return new PageResult<T> { _PageIndex = p.PageIndex, _PageSize = p.PageSize, _TotalCount = (int)p.TotalCount, _PageCount = (int)p.PageCount };
+            return new PageResult<T> { PageIndex = p.PageIndex, PageSize = p.PageSize, TotalCount = (int)p.TotalCount, PageCount = (int)p.PageCount };
         }
 
         #endregion

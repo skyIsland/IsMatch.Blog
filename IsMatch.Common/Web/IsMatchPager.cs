@@ -22,5 +22,6 @@ namespace IsMatch.Common.Web
                 }
             }
         }
+        public override int PageSize { get => base.PageSize == 5 ? 1 : base.PageSize; set => base.PageSize = value; }
     }
 }
