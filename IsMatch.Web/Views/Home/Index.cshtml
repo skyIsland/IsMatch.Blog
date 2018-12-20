@@ -4,7 +4,7 @@
 <div class="banner">
     <div class="cont w1000">
         <div class="title">
-            <h3>IsMatch</h3>
+            @*<h3>IsMatch</h3>*@
             <h4>到底怎么样的终点才能配得上这一路的颠沛流离</h4>
         </div>
         @*<div class="amount">
@@ -141,14 +141,14 @@
                             {{# }else {}}
                             {{# } }}
                         </h3>
-                        <h5>{{ item.pName }}</h5>
+                        <h5>{{ item.categoryName }}</h5>
                         <p>
                             {{ item.keyword }}
                         </p>
                         {{# if(item.enTitle){ }}
-                        <a href="/detail/{{ item.enTitle }}" class="go-icon"></a>
+                        <a href="/post/{{ item.enTitle }}" class="go-icon"></a>
                         {{# } else { }}
-                        <a href="/detail/{{ item.title }}" class="go-icon"></a>
+                        <a href="/post/{{ item.title }}" class="go-icon"></a>
                         {{# } }}
 
                     </div>

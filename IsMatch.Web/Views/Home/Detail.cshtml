@@ -1,6 +1,8 @@
-﻿
+﻿@model Article
 @{
-    ViewData["Title"] = "Detail";
+    ViewData["Title"] = Model.Title;
+    ViewData["Desc"] = Model.Keyword;
+    ViewData["Keywords"] = Model.Tags;
 }
 
 <div class="content whisper-content leacots-content details-content">
@@ -11,8 +13,8 @@
                     <div class="form-box">
                         <div class="article-cont">
                             <div class="title">
-                                <h3>爷爷买街边小吃已经30多年</h3>
-                                <p class="cont-info"><span class="data">2018/08/08</span><span class="types">散文札记</span></p>
+                                <h3>@Model.Title</h3>
+                                <p class="cont-info"><span class="data">@Model.AddTime.ToString("yyyy/MM/dd")</span><span class="types">@Model.CategoryName</span></p>
                             </div>
                             <p>爷每天5点起床，去鸡行里选鸡，选的是大小均匀的老母鸡，送到家里从杀鸡放血开始，鸡血要留着，倒在有盐水的碗里，烧好开水拔了毛连鸡嘴巴鼻子里的粘液都要挤出来。鸡洗干净六只鸡放到一个锅里炖，要炖一个上午，要注意火候鸡皮不能裂。</p>
                             <img src="~/images/wz_img1.jpg">
@@ -33,7 +35,7 @@
                                 </div>
                                 <div class="layui-form-item">
                                     <div class="layui-input-block" style="text-align: right;">
-                                        <button class="layui-btn definite">確定</button>
+                                        <button class="layui-btn definite">确定</button>
                                     </div>
                                 </div>
                             </form>

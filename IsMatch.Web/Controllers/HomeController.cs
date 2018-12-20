@@ -30,28 +30,28 @@ namespace IsMatch.Web.Controllers
         }
 
         /// <summary>
-        /// 文章列表页
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult List()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// 详情页
         /// </summary>
         /// <returns></returns>
-        [Route("Post")]
-        public IActionResult Post(string id)
+        [Route("post/{title}")]
+        public IActionResult Detail(string title)
         {
-            return View();
+            Article article = Article.Find(Article._.IsDel == false & Article._.EnTitle == title);
+            if (article == null)
+            {
+                article = Article.Find(Article._.IsDel == false & Article._.Title == title);
+            }
+            if (article == null)
+            {
+                return NotFound("404,您要访问的页面消失不见了...");
+            }
+            return View(article);
         }
         #endregion
 
         #region 方法
         [HttpGet]
-        [Route("Home/GetList/{pId}")]
+        [Route("Home/GetList/{categoryId}")]
         public virtual IActionResult GetList(int categoryId = 0, IsMatchPager p = null)
         {
             if (p == null) p = new IsMatchPager();

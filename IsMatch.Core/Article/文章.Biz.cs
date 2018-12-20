@@ -130,7 +130,7 @@ namespace IsMatch.Core
        
         public ArticleCategory MyArticleCategory => _MyArticleCategory ?? (_MyArticleCategory = ArticleCategory.FindById(this.KId));
 
-        public string PName => MyArticleCategory.KindName;
+        public string CategoryName => MyArticleCategory.KindName;
         public bool IsNew => DateTime.Now.ToString("yyyyMMdd").ToInt() - UpdateTime.ToString("yyyyMMdd").ToInt() < 4;
 
         #endregion
