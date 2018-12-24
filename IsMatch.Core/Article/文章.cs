@@ -166,6 +166,14 @@ namespace IsMatch.Core
         [DataObjectField(false, false, true, 0)]
         [BindColumn("UpdateTime", "时间", "datetime")]
         public DateTime UpdateTime { get { return _UpdateTime; } set { if (OnPropertyChanging(__.UpdateTime, value)) { _UpdateTime = value; OnPropertyChanged(__.UpdateTime); } } }
+
+        private Int32 _EditorType;
+        /// <summary>编辑器类型1Markdown2富文本</summary>
+        [DisplayName("编辑器类型1Markdown2富文本")]
+        [Description("编辑器类型1Markdown2富文本")]
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("EditorType", "编辑器类型1Markdown2富文本", "int")]
+        public Int32 EditorType { get { return _EditorType; } set { if (OnPropertyChanging(__.EditorType, value)) { _EditorType = value; OnPropertyChanged(__.EditorType); } } }
         #endregion
 
         #region 获取/设置 字段值
@@ -197,6 +205,7 @@ namespace IsMatch.Core
                     case __.Tags : return _Tags;
                     case __.AddTime : return _AddTime;
                     case __.UpdateTime : return _UpdateTime;
+                    case __.EditorType : return _EditorType;
                     default: return base[name];
                 }
             }
@@ -223,6 +232,7 @@ namespace IsMatch.Core
                     case __.Tags : _Tags = Convert.ToString(value); break;
                     case __.AddTime : _AddTime = Convert.ToDateTime(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
+                    case __.EditorType : _EditorType = Convert.ToInt32(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -290,6 +300,9 @@ namespace IsMatch.Core
             /// <summary>时间</summary>
             public static readonly Field UpdateTime = FindByName(__.UpdateTime);
 
+            /// <summary>编辑器类型1Markdown2富文本</summary>
+            public static readonly Field EditorType = FindByName(__.EditorType);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
@@ -352,6 +365,9 @@ namespace IsMatch.Core
 
             /// <summary>时间</summary>
             public const String UpdateTime = "UpdateTime";
+
+            /// <summary>编辑器类型1Markdown2富文本</summary>
+            public const String EditorType = "EditorType";
         }
         #endregion
     }
@@ -416,6 +432,9 @@ namespace IsMatch.Core
 
         /// <summary>时间</summary>
         DateTime UpdateTime { get; set; }
+
+        /// <summary>编辑器类型1Markdown2富文本</summary>
+        Int32 EditorType { get; set; }
         #endregion
 
         #region 获取/设置 字段值

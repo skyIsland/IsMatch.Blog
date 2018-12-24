@@ -38,6 +38,7 @@
       <Column Name="Tags" DataType="String" Length="250" Description="TAG" />
       <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
       <Column Name="UpdateTime" DataType="DateTime" Description="时间" />
+      <Column Name="EditorType" DataType="Int32" Description="编辑器类型1Markdown2富文本" />
     </Columns>
   </Table>
 </Tables>
