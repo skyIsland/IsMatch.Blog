@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using IsMatch.Web.Models;
 using XCode;
 using IsMatch.Common.Web;
+using System.Net;
 
 namespace IsMatch.Web.Controllers
 {
@@ -43,7 +44,7 @@ namespace IsMatch.Web.Controllers
             }
             if (article == null)
             {
-                return NotFound("404,您要访问的页面消失不见了...");
+                return View("Error", (int)HttpStatusCode.NotFound);
             }
             return View(article);
         }

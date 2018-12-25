@@ -1,22 +1,96 @@
-﻿@model ErrorViewModel
-@{
-    ViewData["Title"] = "Error";
+﻿@{
+    ViewData["Title"] = "错误页";
+    var statusCode = Model;
+    var statusmessage = "";
+    var tipmessage = "服务器好像出开了个小差...";
+    switch (statusCode)
+    {
+        case 400:
+            statusmessage = "Bad request: The request cannot be fulfilled due to bad syntax";
+            break;
+        case 403:
+            statusmessage = "Forbidden";
+            break;
+        case 404:
+            statusmessage = "系统找不到本页面";
+            tipmessage = "您所访问的页面好像被吃了...";
+            break;
+        case 408:
+            statusmessage = "The server timed out waiting for the request";
+            break;
+        case 500:
+            statusmessage = "Internal Server Error - server was unable to finish processing the request";
+            break;
+        default:
+            statusmessage = "That's odd... Something we didn't expect happened";
+            break;
+    }
 }
+@section Styles{
+    <style>
+        .notice {
+            width: 600px;
+            margin: 30px auto;
+            padding: 30px 15px;
+            border-top: 5px solid #DB7093;
+            color: #DB7093;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 300;
+            background-color: #f2f2f2;
+        }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+        .fly-none {
+            min-height: 600px;
+            text-align: center;
+            padding-top: 50px;
+            color: #999;
+        }
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
+        .fly-none .layui-icon {
+            line-height: 300px;
+            font-size: 300px;
+            color: #DB7093;
+        }
+
+        .fly-none .layui-icon-face-surprised {
+            display: inline-block;
+            margin: 30px 0 20px;
+        }
+
+        .fly-none p {
+            margin-top: 50px;
+            padding: 0 15px;
+            font-size: 20px;
+            color: #999;
+            font-weight: 300;
+
+        }
+
+        .fly-list-one .fly-none {
+            min-height: 70px;
+        }
+
+        @@media screen and (max-width: 750px) {
+            html body {
+                margin-top: 0;
+            }
+
+            .notice {
+                width: auto;
+                margin: 20px 15px;
+                padding: 30px 0;
+            }
+        }
+    </style>
 }
-
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
-</p>
+<div class="fly-none" style="min-height: 0; padding: 0;">
+    <i class="layui-icon layui-icon-face-surprised"></i>
+</div>
+<div class="notice layui-text">
+    @Model
+    <br>@statusmessage
+    <br>
+    <a href="/">返回主页</a>
+</div>
