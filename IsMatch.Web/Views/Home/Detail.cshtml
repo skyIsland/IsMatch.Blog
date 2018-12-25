@@ -114,7 +114,17 @@
     </div>
 </script>
 @section Scripts
-    {
+{
+    @{ 
+        if(Model.EditorType == 1)
+        {
+            
+        }
+        else if(Model.EditorType == 2)
+        {
+
+        }
+    }
     <script type="text/javascript">
         layui.config({
             base: '../js/util/'
