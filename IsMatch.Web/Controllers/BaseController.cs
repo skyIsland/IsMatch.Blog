@@ -1,6 +1,8 @@
-﻿using IsMatch.Core;
+﻿using IsMatch.Common.Web;
+using IsMatch.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 
 namespace IsMatch.Web.Controllers
 {
@@ -23,10 +25,19 @@ namespace IsMatch.Web.Controllers
             ViewBag.Position = "Index";
         }
 
+        [NonAction]
+        protected IActionResult Prompt(Action<Prompt> setupPrompt)
+        {
+            var prompt = new Prompt();
+            setupPrompt(prompt);
+            Response.StatusCode = prompt.StatusCode;
+            return View("Prompt", prompt);
+        }
+
         //public virtual IActionResult GetList(IsMatchPager p = null)
         //{
         //    if (p == null) p = new IsMatchPager();
-        //    String key = p["key"];
+        //    string key = p["key"];
         //    var list = Entity<TEntity>.Search(key, p);
         //    var result = PageResult.FromPager(p);
         //    result.Data = list;

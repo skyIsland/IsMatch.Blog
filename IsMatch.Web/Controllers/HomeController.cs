@@ -44,8 +44,10 @@ namespace IsMatch.Web.Controllers
             }
             if (article == null)
             {
-                return View("Error", (int)HttpStatusCode.NotFound);
+                return Prompt(p => p.Details = "404，您的页面被火星搬走了...");
             }
+            article.Hits++;
+            article.Save();
             return View(article);
         }
         #endregion

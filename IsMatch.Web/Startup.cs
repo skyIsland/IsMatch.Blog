@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IsMatch.Web.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +32,10 @@ namespace IsMatch.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<HttpGlobalExceptionFilter>();
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -47,6 +51,14 @@ namespace IsMatch.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            // 状态代码页
+            //app.UseStatusCodePages(async context => 
+            //{
+            //    if(context.HttpContext.Request.ContentType == "application/json")
+
+            //    await context.HttpContext.Response.WriteAsync()
+            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

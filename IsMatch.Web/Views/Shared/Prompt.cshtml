@@ -1,30 +1,6 @@
-﻿@{
+﻿@model Prompt
+@{
     ViewData["Title"] = "错误页";
-    var statusCode = Model;
-    var statusmessage = "";
-    var tipmessage = "服务器好像出开了个小差...";
-    switch (statusCode)
-    {
-        case 400:
-            statusmessage = "Bad request: The request cannot be fulfilled due to bad syntax";
-            break;
-        case 403:
-            statusmessage = "Forbidden";
-            break;
-        case 404:
-            statusmessage = "系统找不到本页面";
-            tipmessage = "您所访问的页面好像被吃了...";
-            break;
-        case 408:
-            statusmessage = "The server timed out waiting for the request";
-            break;
-        case 500:
-            statusmessage = "Internal Server Error - server was unable to finish processing the request";
-            break;
-        default:
-            statusmessage = "That's odd... Something we didn't expect happened";
-            break;
-    }
 }
 @section Styles{
     <style>
@@ -89,8 +65,7 @@
     <i class="layui-icon layui-icon-face-surprised"></i>
 </div>
 <div class="notice layui-text">
-    @Model
-    <br>@statusmessage
+    @Model.Details
     <br>
     <a href="/">返回主页</a>
 </div>
